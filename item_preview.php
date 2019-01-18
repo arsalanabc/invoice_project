@@ -3,6 +3,26 @@
 Catalog Template 
 http://www.templatemo.com/preview/templatemo_379_catalog 
 -->
+
+
+<?php
+if ($_GET['product_id'] == NULL){
+	echo "page error: product is not found";
+} else {
+
+
+require_once ('php/config.php');
+
+
+
+	$sql = $connect->query("SELECT * FROM product WHERE product_id=".$_GET['product_id']."");
+
+	$product =  $sql->fetch_assoc();
+
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>		
@@ -22,6 +42,10 @@ http://www.templatemo.com/preview/templatemo_379_catalog
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
 		</script>
 		<![endif]-->
+		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+		<style>
+		.mySlides {display:none;}
+		</style>
 	</head>
 	<body>
 		<header>
@@ -62,18 +86,29 @@ http://www.templatemo.com/preview/templatemo_379_catalog
 				<div class="row">
 					<div class="col-md-12" id="img_preview">
                     
-						<h3>Responsive Theme</h3>
-						
-						<a href="images/templatemo_374_responsive_1780x1780.jpg" title="Click to see the original size">
-							<img src="images/templatemo_374_responsive_1780x1780.jpg" 
-                            	alt="templatemo 374 responsive" class="img-responsive" width="840" height="840">
-						</a>	
+						<h3><?php echo $product['product_name']?></h3>
+
+						<div class="w3-content w3-display-container">
+							<?php 
+							echo "<img class='mySlides' src=".$product['product_image']." 
+                          	 style='width:100%' >";
+							?>
+						  <img class="mySlides" src="https://www.w3schools.com/w3css/img_snowtops.jpg" style="width:100%">
+						  <img class="mySlides" src="https://www.w3schools.com/w3css/img_lights.jpg" style="width:100%">
+						  <img class="mySlides" src="https://www.w3schools.com/w3css/img_mountains.jpg" style="width:100%">
+						  <img class="mySlides" src="https://www.w3schools.com/w3css/img_forest.jpg" style="width:100%">
+
+						  <button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+						  <button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+						</div>
+
+				
                         			
 					</div>
 				</div> 
 				<div class="row">
 					<div class="col-md-12">
-						<div class="item_container">
+						<!-- <div class="item_container">
 									
 									<div class="item">
 										<a href="#templatemo_372_titanium" class="thumbnail">
@@ -112,13 +147,51 @@ http://www.templatemo.com/preview/templatemo_379_catalog
 										</a>
 									</div>
                                     
-						</div> <!-- item container -->
+						</div>  -->
+						<!-- item container -->
+
+						<div> <!-- item description -->
+							<h3>Description: </h3>
+							<ul>
+								<li>
+									d
+								
+								</li>
+								<li>
+									d
+								
+								</li>
+								<li>
+									d
+								
+								</li>
+								<li>
+									d
+								
+								</li>
+								<li>
+									d
+								
+								</li>
+								<li>
+									d
+								
+								</li>
+							</ul>
+
+						</div>
+
+
+						<div> <!-- price -->
+							<h3> <?php echo $product['price'];?> </h3>
+						</div>
+
 					</div> <!-- col-md-12 -->
 				</div>
 				<div class="row">
 					<div class="col-md-12">
 						<div class="preview_footer_container">
-
+<!-- 
 							<div class="footer_item section_box">
 								<h4>Responsive Theme</h4>
                                 <p>This is a fluid layout based on Bootstrap front-end framework.</p>
@@ -145,8 +218,8 @@ http://www.templatemo.com/preview/templatemo_379_catalog
                                     <li><a href="#">templatemo site</a></li>
                                     <li><a href="#">free flash stuffs</a></li>
 								</ul>
-                                <a href="#" class="btn btn-info" role="button">View More</a>
-							</div>
+                                <a href="#" class="btn btn-info" role="button">View More</a> 
+							</div> -->
                             
 						</div> <!-- preview_footer_container -->
 					</div>
@@ -174,6 +247,7 @@ http://www.templatemo.com/preview/templatemo_379_catalog
 	    Hiding text overflow: http://stackoverflow.com/questions/15308061/how-to-avoid-text-overflow-in-twitter-bootstrap
 		-->
 		<script src="js/masonry.pkgd.min.js"></script>
+		<script src="js/image_flip_through.js"></script>
 		<script src="js/imagesloaded.pkgd.min.js"></script>   
 		<script>
 
@@ -203,3 +277,7 @@ http://www.templatemo.com/preview/templatemo_379_catalog
 		</script>		
 	</body>
 </html>
+
+<?php 
+	} //end else 
+?>
